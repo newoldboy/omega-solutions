@@ -1,0 +1,20 @@
+<mat-tab-group>
+  <mat-tab label="Agendar">
+    <mat-card>
+      <form [formGroup]="form">
+        <mat-form-field appearance="outline">
+          <mat-label>Descrição</mat-label>
+          <input matInput placeholder="Descrição"  formControlName="descricao">
+        </mat-form-field>
+        <button mat-raised-button color="primary" [disabled]="form.invalid" style="margin-left: 75%;" (click)="saveCompromisso()">Salvar</button>
+      </form>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label="Consultar">    
+    <div class="container-fluid">
+      <div class="row">          
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+

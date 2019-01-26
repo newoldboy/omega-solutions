@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <div class="row">
+        <mat-card class="col-sm-3 col-md-2"> 
+            <form [formGroup]="cardForm" class="form">
+                <h2>Project-Omega</h2>
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Usuario</mat-label>
+                        <input matInput id="login" placeholder="Digite seu usuario" [type]="text" formControlName="login">                      
+                        <i  matSuffix class="material-icons">person</i>
+                    </mat-form-field>
+                </p>      
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Senha</mat-label>
+                        <input matInput  id="senha" placeholder="Digite sua senha"[type]="password ? 'password' : 'text'" formControlName="senha">            
+                        <mat-icon matSuffix (click)="password = !password">{{password ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    </mat-form-field>
+                </p>        
+            </form>
+            <h4 class="mensage-erro">{{mensagem}}</h4>
+            <button mat-raised-button color="primary" (click)="fazerLogin()" [disabled]="cardForm.invalid">Entrar</button>   
+        </mat-card>
+    </div>
+</div>

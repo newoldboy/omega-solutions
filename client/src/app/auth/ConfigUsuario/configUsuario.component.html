@@ -1,0 +1,33 @@
+<mat-card id="formCadastro"> 
+    <form [formGroup]="FormUser">
+        <h2>Novo usuario</h2>
+        <mat-form-field>
+            <mat-label>Nome</mat-label>
+            <input matInput id="nome" placeholder="Digite seu nome" [type]="text" formControlName="nome" required>                      
+            <i  matSuffix class="material-icons">person</i>
+        </mat-form-field>        
+        <mat-form-field>
+            <mat-label>Usuario</mat-label>
+            <input matInput id="login" placeholder="Digite seu usuario" [type]="text" formControlName="usuario" required>                      
+            <i  matSuffix class="material-icons">person_outline</i>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Senha</mat-label>
+            <input matInput  id="senha" placeholder="Digite sua senha"[type]="password ? 'password' : 'text'" formControlName="senha" required>            
+            <mat-icon matSuffix (click)="password = !password">{{password ? 'visibility' : 'visibility_off'}}</mat-icon>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="insira seu email" formControlName="email" required>
+            <i  matSuffix class="material-icons">email</i>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="Nivel de Acesso"  formControlName="nivel" required>
+                <mat-option *ngFor="let nivel of niveis" [value]="nivel.value">
+                    {{nivel.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+    <button mat-raised-button color="primary" (click)="cadastrarUser()" [disabled]="FormUser.invalid">Entrar</button>   
+</mat-card>
