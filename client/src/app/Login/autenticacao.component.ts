@@ -16,6 +16,7 @@ export class AutenticacaoComponent implements OnInit {
   public mensagem: string;  
   public cardForm: FormGroup;
   public password = true;
+  public selectList = false;
   
   constructor(private authService: AuthService,private fb: FormBuilder,private router: Router) {    
     this.cardForm = fb.group({
@@ -30,18 +31,34 @@ export class AutenticacaoComponent implements OnInit {
       this.router.navigate(['./omg/dashboard']);
     }
   }
+  
   fazerLogin() {    
-    this.authService.fazerLogin(this.cardForm.value)
-    .then((response) => {
-      if (response['token']) {
+    if (this.cardForm.controls['login'].value === 'tere' && this.cardForm.controls['senha'].value === '123') {
+      this.authService.setCredenciaisOff(this.cardForm.value, 2)
+      this.router.navigate(['./omg/dashboard']);
+    } else {
+      if (this.cardForm.controls['login'].value === 'admin@admin' && this.cardForm.controls['senha'].value === 'admin') {
+        this.authService.setCredenciaisOff(this.cardForm.value, 1)
         this.router.navigate(['./omg/dashboard']);
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-      this.messagemErro();
-    });    
+      }else {
+        if (this.cardForm.controls['login'].value === 'user' && this.cardForm.controls['senha'].value === 'user') {
+          this.authService.setCredenciaisOff(this.cardForm.value, 3)
+          this.router.navigate(['./omg/dashboard']);
+        }
+      } 
+    }    
+    // this.authService.fazerLogin(this.cardForm.value)
+    // .then((response) => {
+    //   if (response['token']) {
+    //     this.router.navigate(['./omg/dashboard']);
+    //   }
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    //   this.messagemErro();
+    // });    
   }
+  
   messagemErro(){
     this.mensagem = 'Usuario ou senha incorreto.';
   }   

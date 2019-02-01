@@ -6,40 +6,42 @@
         <mat-form-field appearance="outline">
           <mat-label>Tipo</mat-label>
           <mat-select placeholder="Tipo" formControlName="tipo">
-            <mat-option *ngFor="let row of tipos" [value]="row.value">
+            <mat-option *ngFor="let row of tipos" [value]="row.value" (click)="setList()">
               {{row.name}}
             </mat-option>
           </mat-select>
         </mat-form-field>
-        
-        <mat-form-field appearance="outline">
-          <mat-label>Data</mat-label>
-          <input matInput [matDatepicker]="picker" placeholder="Escolha uma data" formControlName="data"> 
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>     
+        <div *ngIf="selectList">
         
         <mat-form-field appearance="outline">
           <mat-label>Ação</mat-label>
           <input matInput  formControlName="acao">          
           <mat-icon matSuffix (click)="addLista()">add</mat-icon>            
         </mat-form-field> 
+        <mat-form-field appearance="outline">
+          <mat-label>Quantidade</mat-label>
+          <mat-icon matSuffix (click)="addLista()">add</mat-icon>      
+          <input matInput placeholder="Quantidade"  formControlName="qtd">
+        </mat-form-field>  
+
         <div *ngFor="let row of listAcao" style="margin-bottom: 12px;margin-left: 2%;">
           <span>{{row.name}}</span>
+          <span *ngIf="row.qtd" style="margin-left: 8px;">{{row.qtd}}</span>
           <mat-icon style="margin-left: 50%;" (click)="clearList(row.name)">remove</mat-icon>
         </div>     
         <div class="row div-btn">
           <button mat-raised-button color="primary" (click)="clear()">Limpar</button>
           <button mat-raised-button color="primary">Salvar</button>
-        </div>        
+        </div>
+      </div>        
       </form>
     </mat-card>
   </mat-tab>
   <mat-tab label="Consultar">    
     <div class="container-fluid">
       <div class="row">
-          <div *ngFor="let item of listCentro">
-            <mat-card *ngIf="centroList" class="col-sm-3 col-md-3 col-lg-5">              
+          <div *ngFor="let item of lista">
+            <mat-card *ngIf="listCreate" class="col-sm-3 col-md-3 col-lg-5">              
               <h3>{{item.name}}</h3>
               <div *ngFor="let row of item.items">
                 <mat-checkbox style="margin-left: 6px;" >{{row.nome}} - {{row.desc}}</mat-checkbox>
@@ -48,7 +50,7 @@
             </mat-card>
           </div>
           <div *ngFor="let item of listMercado">
-            <mat-card *ngIf="centroList" class="col-sm-3 col-md-3 col-lg-5">
+            <mat-card *ngIf="listCreate" class="col-sm-3 col-md-3 col-lg-5">
               <h3>{{item.name}}</h3>
               <div *ngFor="let row of item.items">
                 <mat-checkbox style="margin-left: 6px;">{{row.nome}} - {{row.qtd}}</mat-checkbox>

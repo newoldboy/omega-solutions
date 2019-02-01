@@ -1,14 +1,32 @@
-mat-form-field {
-    width: 100%;
+@media only screen and (min-width: 750px) {
+
+    mat-form-field {
+        width: 100%;
+    }
+    
+    button {    
+        margin-left: 65%;
+    }
+    
+    .container-fluid {
+        margin-left: 5%;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-top: 5%;
+    }
 }
 
-button {    
-    margin-left: 65%;
-}
 
-.container-fluid {
-    margin-left: 5%;
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-top: 5%;
+@media only screen and (max-width: 700px) {
+    mat-form-field {
+        width: 100%;
+    }
+    
+    button {    
+        margin-left: 65%;
+    }
+    
+    .container-fluid {
+        margin-top: 5%;
+    }
 }

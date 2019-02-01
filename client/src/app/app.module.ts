@@ -12,11 +12,14 @@ import { AppComponent } from './app.component';
 import { APP_BASE_HREF } from '@angular/common';
 import { AutenticacaoComponent } from './Login/autenticacao.component';
 import {MatCardModule} from '@angular/material/card';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { MenuComponent } from './pages/Menu/menu.component';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [    
     AppComponent,    
-    AutenticacaoComponent
+    AutenticacaoComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -33,7 +36,8 @@ import {MatCardModule} from '@angular/material/card';
     MatMenuModule,
     MatToolbarModule,
     MatButtonToggleModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    PagesModule
   ],
   providers: [AuthService, RoutesInterceptor, { provide: APP_BASE_HREF, useValue: '/' },{ provide: MAT_DATE_LOCALE, useValue: 'pt-Br' }],
   bootstrap: [AppComponent],  

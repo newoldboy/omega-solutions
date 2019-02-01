@@ -21,15 +21,25 @@ export class AuthService {
         
         sessionStorage.setItem('token', token);
         sessionStorage.setItem('usuario', JSON.stringify(usuario));
+        
     }    
+
+    setCredenciaisOff(body, nivel) {        
+        sessionStorage.setItem('user', body['login']);
+        sessionStorage.setItem('senha', body['senha']);             
+        sessionStorage.setItem('nivel', nivel);
+    }
+
     getUser() {
         const user = sessionStorage.getItem('usuario');
         return (user ? JSON.parse(user) : undefined);
     }    
+
     getToken() {
         const token = sessionStorage.getItem('token');
         return token;
     }    
+    
     fazerLogin(usuario: Usuario) {
         console.log(usuario);
         
@@ -49,6 +59,7 @@ export class AuthService {
     fazerLogOff(){
         sessionStorage.clear();
     }
+
     confirmacaoCadastro(newUser: boolean, message: string){
         if (newUser === true) {
             sessionStorage.setItem('InformaçãoCadastro', message);
@@ -56,6 +67,7 @@ export class AuthService {
             sessionStorage.setItem('InformaçãoCadastro', message);
         }
     }
+    
     cadastrarUsuario(novoUsuario){
         const promise = new Promise((resolve,reject)=>{
             this.http.post(API_CONFIG.url + 'api/cadastroUsuario', novoUsuario)
@@ -73,3 +85,4 @@ export class AuthService {
         return promise;
     }       
 }
+

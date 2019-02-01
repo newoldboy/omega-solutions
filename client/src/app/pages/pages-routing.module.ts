@@ -12,7 +12,8 @@ const routes: Routes = [{
   children: [
     {path: 'dashboard', component: DashboardComponent},
     {path: 'config-comp', component: ConfigCompromissoComponent},
-    {path: 'agenda-comp', component: AgencaCompComponent, canActivate: [RoutesInterceptor]},            
+    {path: 'agenda-comp', component: AgencaCompComponent},       
+    // {path: 'agenda-comp', component: AgencaCompComponent, canActivate: [RoutesInterceptor]},            
     {path: '**', redirectTo: 'dashboard'}
   ],
 }];

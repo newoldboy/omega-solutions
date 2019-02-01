@@ -14,63 +14,44 @@ import { del } from 'selenium-webdriver/http';
 })
 
 export class AgencaCompComponent implements OnInit{
-  
-  public listAcao = []
-  public listMercado = [{
-    name: 'Mercado',
-    codigo: 1,
-    items: [
-      {nome: 'ovo', qtd: 12},
-      {nome: 'coca', qtd: 1},
-      {nome: 'pao', qtd: 9},
-      {nome: 'carne', qtd: 2}
-    ]
-  }];
+
   public tipos = [
     {name: 'Centro', value: 1},
     {name: 'Mercado', value: 2},
     {name: 'Compromisso', value: 3},
   ]
-  public listCentro = [{
-    name: 'Centro',
-    codigo: 2,
-    items: [
-      {nome: 'Havan', qtd: 12, desc: 'Pagar'},
-      {nome: 'Caixa', qtd: 1, desc: 'Sacar'},
-      {nome: 'Farmacia', qtd: 9, desc: 'Paracacetemol'}
-    ]
-  }];
+  public listAcao = []
+  public lista = [];
   public checked = false;
   public mercadoList = false;
   public centroList = false;
   public form: FormGroup;
+  public selectList = false;
+  public tipoList = '';
+  public listCreate = false;
 
   constructor(private listaCliente: AgendaCompService,private router: Router, private formBuilder : FormBuilder){
     this.form = this.formBuilder.group({
       tipo: [Validators.required],
-      data: [Validators.required],
+      qtd: ['', Validators.required],
       acao: ['', [Validators.required]],
       // password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
   
-  ngOnInit() {
-    this.setListas();
+  ngOnInit() {}
+
+  setList() {
+    this.selectList = true;
+    this.tipoList = this.form.controls['tipo'].value;
   }
   
-  setListas() {
-    this.mercadoList = false;
-    this.centroList = false;
-    if (this.listCentro  !== []) {
-      this.centroList = true;
-    };
-    if (this.listMercado !== []) {
-      this.mercadoList = true;
-    };
-  }
-
   addLista() {
-    this.listAcao.push({name :this.form.controls['acao'].value});
+    if (this.form.controls['acao'].value !== '') {
+      this.listAcao.push({name :this.form.controls['acao'].value, qtd: this.form.controls['qtd'].value});
+    } else {
+      this.listAcao.push({name :this.form.controls['acao'].value});
+    }    
   }
 
   clear() {
@@ -87,12 +68,22 @@ export class AgencaCompComponent implements OnInit{
       console.log(row);      
       for (let i = 0; i < this.listAcao.length; i++) {
         if (this.listAcao[i]['name'] = row) {
-          this.listAcao.slice(i, row)
+          delete this.listAcao[i]['name'];
           break;
         }
       }
       console.log(this.listAcao);   
   }
 
+  save() {
+    this.lista.push({
+      Tipo: this.form.controls['tipo'].value,   
+      itens : [{
+        name: this.form.controls['acao'].value,
+        quantidade: this.form.controls['qtd'].value,
+      }]   
+    })
+    this.listCreate = true;
+  }
 
 }
