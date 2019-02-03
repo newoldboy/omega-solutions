@@ -83,6 +83,19 @@ export class AuthService {
             );
         });
         return promise;
-    }       
+    }     
+    
+    teste() {
+        const promise = new Promise((resolve, reject) => {
+            this.http.get(API_CONFIG.url + 'api/clientes')
+            .toPromise().then(
+                res =>
+                    resolve(res),                
+                error => reject(error),
+            );
+        });
+        return promise;
+    }
+
 }
 

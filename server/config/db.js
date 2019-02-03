@@ -1,13 +1,5 @@
-/**
- * db.js configuration
- */
-
 'use strict';
 
-var config = require('./environment'),
-    Firebird = require('node-firebird'),
-    firebirdConfig = config.firebird;
+var connect = 'postgres://admin:admin@localhost/omega'
 
-var pool = Firebird.pool(5, firebirdConfig);
-
-module.exports = pool;
+module.exports = connect;

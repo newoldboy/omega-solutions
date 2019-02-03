@@ -39,7 +39,7 @@
     "node-firebird": "^0.8.4",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "pg": "^7.4.3",
+    "pg": "^7.8.0",
     "planer": "^1.1.1",
     "request": "^2.82.0",
     "serve-favicon": "~2.0.1",
