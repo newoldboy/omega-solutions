@@ -87,7 +87,7 @@ export class AuthService {
     
     teste() {
         const promise = new Promise((resolve, reject) => {
-            this.http.get(API_CONFIG.url + 'api/clientes')
+            this.http.get(API_CONFIG.url + 't')
             .toPromise().then(
                 res =>
                     resolve(res),                

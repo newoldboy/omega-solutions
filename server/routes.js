@@ -11,7 +11,8 @@ path = require('path');
 module.exports = function (app) {
   
 
-  app.use('/',(req, res, next) => {
+
+  app.use('/t',(req, res, next) => {
     var pg = require('pg');
     
     const config = {
